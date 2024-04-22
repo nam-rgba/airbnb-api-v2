@@ -24,6 +24,11 @@ import { User } from './user/schema/user.entity'
       entities: [User],
       useUnifiedTopology: true
     })
+    // CorsModule.forRoot({
+    //   origin: ['http://localhost:5173'], // Allow requests from this origin
+    //   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow these methods
+    //   allowedHeaders: ['Content-Type', 'Authorization'] // Allow these headers
+    // })
   ],
   controllers: [AppController],
   providers: [AppService]
