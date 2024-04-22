@@ -2,14 +2,14 @@ import { Module } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { AuthModule } from './auth/auth.module'
-import { UserModule } from './user/user.module'
+// import { UserModule } from './user/user.module'
 import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { DataSource } from 'typeorm'
+import { User } from './user/schema/user.entity'
+
 @Module({
   imports: [
     AuthModule,
-    UserModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env'
@@ -17,15 +17,15 @@ import { DataSource } from 'typeorm'
     TypeOrmModule.forRoot({
       type: 'mongodb',
       url: process.env.MONGO_URL,
+      database: 'nest_v1',
       useNewUrlParser: true,
       synchronize: true,
       logging: true,
-      entities: ['dist/**/*.entity{.ts,.js}']
+      entities: [User],
+      useUnifiedTopology: true
     })
   ],
   controllers: [AppController],
   providers: [AppService]
 })
-export class AppModule {
-  constructor(private dataSource: DataSource) {}
-}
+export class AppModule {}
