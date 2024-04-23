@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module'
 import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { User } from './user/schema/user.entity'
+import { RoomsModule } from './rooms/rooms.module'
 
 @Module({
   imports: [
@@ -23,12 +24,8 @@ import { User } from './user/schema/user.entity'
       logging: true,
       entities: [User],
       useUnifiedTopology: true
-    })
-    // CorsModule.forRoot({
-    //   origin: ['http://localhost:5173'], // Allow requests from this origin
-    //   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow these methods
-    //   allowedHeaders: ['Content-Type', 'Authorization'] // Allow these headers
-    // })
+    }),
+    RoomsModule
   ],
   controllers: [AppController],
   providers: [AppService]
